@@ -14,10 +14,10 @@ const logger = require('./middleware/logger');
 app.use(logger);
 
 //routes
-const foodRoutes = require('./routes/food');
-const carsRoutes = require('./routes/cars');
-app.use(foodRoutes);
-app.use(carsRoutes);
+const customerRoutes = require('./routes/customers');
+const orderRoutes = require('./routes/orders');
+app.use(orderRoutes);
+app.use(customerRoutes);
 
 module.exports = {
   app: app,
