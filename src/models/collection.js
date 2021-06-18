@@ -7,17 +7,16 @@ class Collection {
   }
 
   create(json) {
-    this.model.create(json);
+    return this.model.create(json);
   }
 
   read(id, options = {}) {
     let modelParams = {...options};
-
     if(id){
       modelParams.where = { id: id };
       return this.model.findOne(modelParams);
     } else {
-      return this.model.findAll(modelParams);
+      return this.model.findAll();
     }
   }
 
