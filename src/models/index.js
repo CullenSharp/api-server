@@ -9,9 +9,16 @@ const customerModel = require('./customers');
 const Collection = require('./collection');
 
 const DATABASE_URL = process.env.DATABASE_URL || 'sqlite:memory:';
+const NODE_ENV = process.env.NODE_ENV;
 
-//what is this doing?
-const sequelize = new Sequelize(DATABASE_URL);
+let sequelize = new Sequelize(DATABASE_URL, NODE_ENV === 'production' ? {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+} : {});
 
 //why do I pass in sequelize? what is it
 const orders = orderModel(sequelize, DataTypes);
